@@ -1,0 +1,287 @@
+.doodleWrapper {
+  --ink: #3B4A2B;
+  --paper-front: #F5EDE3;
+  --paper-back: #E8DDD1;
+  --bg-color: #ffffff;
+  --primary-btn: #3B4A2B;
+  --primary-btn-hover: #2A3620;
+  --secondary-btn: #B5B5A4;
+  --secondary-btn-hover: #9E9E8C;
+  --switch-bg: #B5B5A4;
+  --input-focus: #3B4A2B;
+
+  --card-width: 320px;
+  --card-height: 420px;
+  --input-width: 260px;
+  --input-height: 44px;
+  --btn-width: 140px;
+  --btn-height: 44px;
+
+  --border-width: 2.5px;
+  --shadow-offset: 5px;
+
+  --sketch-radius-1: 8px 24px 8px 24px / 24px 8px 24px 8px;
+  --sketch-radius-2: 24px 8px 24px 8px / 8px 24px 8px 24px;
+  --sketch-radius-btn: 16px 5px 16px 5px / 5px 16px 5px 16px;
+
+  font-family: "Gochi Hand", "Nunito", cursive, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.doodleToggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.doodleHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  z-index: 5;
+}
+
+.doodleModeText {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  transition: opacity 0.3s;
+}
+
+.doodleToggle:not(:checked) ~ .doodleHeader .signupText {
+  opacity: 0.5;
+}
+.doodleToggle:checked ~ .doodleHeader .loginText {
+  opacity: 0.5;
+}
+
+.doodleSwitchLabel {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  background-color: var(--switch-bg);
+  border: var(--border-width) solid var(--ink);
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.doodleSwitchLabel:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--ink);
+}
+
+.doodleSwitchHandle {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--bg-color);
+  border: var(--border-width) solid var(--ink);
+  border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.doodleToggle:checked ~ .doodleHeader .doodleSwitchLabel .doodleSwitchHandle {
+  transform: translateX(24px);
+}
+
+.doodleCardScene {
+  position: relative;
+  perspective: 1000px;
+  width: var(--card-width);
+  height: var(--card-height);
+  z-index: 2;
+}
+
+.doodleSvg {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.doodleStar {
+  top: -25px;
+  left: -35px;
+  width: 48px;
+  height: 48px;
+  animation: floatStar 4s ease-in-out infinite;
+}
+.doodleSparkle {
+  bottom: -20px;
+  right: -25px;
+  width: 40px;
+  height: 40px;
+  animation: floatSparkle 4s ease-in-out infinite 1s;
+}
+.doodleSwirl {
+  top: 30px;
+  right: -30px;
+  width: 32px;
+  height: 32px;
+  animation: floatSwirl 4s ease-in-out infinite 2s;
+}
+
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0) rotate(-15deg); }
+  50% { transform: translateY(-8px) rotate(-10deg); }
+}
+@keyframes floatSparkle {
+  0%, 100% { transform: translateY(0) rotate(10deg); }
+  50% { transform: translateY(-8px) rotate(15deg); }
+}
+@keyframes floatSwirl {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+.doodleCardInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.doodleToggle:checked ~ .doodleCardScene .doodleCardInner {
+  transform: rotateY(180deg);
+}
+
+.doodleCardFront,
+.doodleCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-1);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--ink);
+
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    rgba(59, 74, 43, 0.08) 28px,
+    rgba(59, 74, 43, 0.08) 30px
+  );
+  background-position: 0 15px;
+}
+
+.doodleCardFront {
+  background-color: var(--paper-front);
+}
+
+.doodleCardBack {
+  background-color: var(--paper-back);
+  transform: rotateY(180deg);
+  border-radius: var(--sketch-radius-2);
+}
+
+.doodleTitle {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: rotate(-2deg);
+}
+
+.doodleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  align-items: center;
+}
+
+.doodleInputWrapper {
+  position: relative;
+}
+
+.doodleInput {
+  width: var(--input-width);
+  height: var(--input-height);
+  padding: 5px 15px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  background-color: var(--bg-color);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-1);
+  box-shadow: 3px 3px 0px var(--ink);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.doodleInput::placeholder {
+  color: #7a7a6b;
+  opacity: 0.8;
+}
+
+.doodleInput:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.doodleInput:focus {
+  border: var(--border-width) solid var(--input-focus);
+  border-radius: var(--sketch-radius-2);
+  background-color: #fffdf5;
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.doodleBtn {
+  margin-top: 10px;
+  width: var(--btn-width);
+  height: var(--btn-height);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 900;
+  color: #F5EDE3;
+  background-color: var(--primary-btn);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--sketch-radius-btn);
+  box-shadow: 4px 4px 0px var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  transform: rotate(-1deg);
+}
+
+.doodleBtnAlt {
+  background-color: #B5B5A4;
+  color: #3B4A2B;
+  transform: rotate(1deg);
+}
+
+.doodleBtn:hover {
+  background-color: var(--primary-btn-hover);
+  transform: translateY(-2px) rotate(-2deg);
+  box-shadow: 5px 5px 0px var(--ink);
+}
+
+.doodleBtnAlt:hover {
+  background-color: var(--secondary-btn-hover);
+  transform: translateY(-2px) rotate(2deg);
+}
+
+.doodleBtn:active {
+  transform: translate(3px, 3px) rotate(0deg);
+  box-shadow: 0px 0px 0px var(--ink);
+}
