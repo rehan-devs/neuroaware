@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- soft cream background -->
+  <rect width="64" height="64" rx="14" fill="#F5EDE3"/>
+
+  <!-- left lobe -->
+  <path
+    d="M30 18
+       C22 18 16 24 16 32
+       C16 40 22 46 30 46
+       C31 46 31 45 31 44
+       V20
+       C31 19 31 18 30 18Z"
+    fill="#3B4A2B"
+  />
+
+  <!-- right lobe -->
+  <path
+    d="M34 18
+       C42 18 48 24 48 32
+       C48 40 42 46 34 46
+       C33 46 33 45 33 44
+       V20
+       C33 19 33 18 34 18Z"
+    fill="#3B4A2B"
+  />
+
+  <!-- center split line -->
+  <path
+    d="M32 20 V44"
+    stroke="#F5EDE3"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- simple folds -->
+  <path d="M22 28 C25 26 28 28 28 31" stroke="#F5EDE3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M22 36 C25 34 28 36 28 39" stroke="#F5EDE3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M42 28 C39 26 36 28 36 31" stroke="#F5EDE3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M42 36 C39 34 36 36 36 39" stroke="#F5EDE3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
